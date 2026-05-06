@@ -1,9 +1,9 @@
 package ru.yandex.practicum.sleeptracker.data;
 
 public enum UserType {
-    OWL ("Сова"), // Сова
-    LARK ("Жаворонок"),// Жаворонок
-    DOVE ("Голубь");//
+    OWL("Сова"), // Сова
+    LARK("Жаворонок"),// Жаворонок
+    DOVE("Голубь");//
 
     private String userSleepingType;
 
