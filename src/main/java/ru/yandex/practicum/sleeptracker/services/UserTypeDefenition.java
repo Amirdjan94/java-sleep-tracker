@@ -12,7 +12,7 @@ public class UserTypeDefenition implements SleepLogProcessor {
     public String doProcess(List<SleepingSession> sleepingSessionList) {
 
         // Фильтруем ночные сессии сна и Сопоставляем каждую ночную сессию сна с типом пользователя
-        List<UserType> UserTypeList = sleepingSessionList.stream()
+        List<UserType> userTypeList = sleepingSessionList.stream()
                 .filter((sleepingSession) ->
                         (sleepingSession.getStartSleep().getDayOfYear() == sleepingSession.getFinishSleep().getDayOfYear() - 1) ||
                                 (sleepingSession.getStartSleep().getHour() < 6)
@@ -31,9 +31,9 @@ public class UserTypeDefenition implements SleepLogProcessor {
                 .collect(Collectors.toList());
 
         // Подсчет количесв количества каждого вида сна
-        long owlCount = UserTypeList.stream().filter((element) -> element == UserType.OWL).count();
-        long larkCount = UserTypeList.stream().filter((element) -> element == UserType.LARK).count();
-        long doveCount = UserTypeList.stream().filter((element) -> element == UserType.DOVE).count();
+        long owlCount = userTypeList.stream().filter((element) -> element == UserType.OWL).count();
+        long larkCount = userTypeList.stream().filter((element) -> element == UserType.LARK).count();
+        long doveCount = userTypeList.stream().filter((element) -> element == UserType.DOVE).count();
 
         if (owlCount > larkCount && owlCount > doveCount) return UserType.OWL.getuserSleepingType();
         else if (larkCount > owlCount && larkCount > doveCount) return UserType.LARK.getuserSleepingType();
