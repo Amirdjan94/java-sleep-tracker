@@ -11,7 +11,7 @@ public class SleepingSession {
     private final LocalDateTime finishSleep;
     private final SleepQuality qualityOfSleep;
 
-    private final DateTimeFormatter IN_LOG_TIME_FORMAT = DateTimeFormatter.ofPattern("dd.MM.yy HH:mm");
+    private static final DateTimeFormatter IN_LOG_TIME_FORMAT = DateTimeFormatter.ofPattern("dd.MM.yy HH:mm");
 
     @Override
     public String toString() {
