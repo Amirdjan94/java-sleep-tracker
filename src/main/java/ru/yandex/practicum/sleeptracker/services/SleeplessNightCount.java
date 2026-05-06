@@ -16,12 +16,12 @@ public class SleeplessNightCount implements SleepLogProcessor {
                 )
                 .count();
         Period period = Period.between(
-                sleepingSessionList.getFirst().getStartSleep().toLocalDate(), sleepingSessionList.getLast().getFinishSleep().toLocalDate())
+                        sleepingSessionList.getFirst().getStartSleep().toLocalDate(), sleepingSessionList.getLast().getFinishSleep().toLocalDate())
                 .plusDays(1);
 
-        if (sleepingSessionList.getFirst().getStartSleep().toLocalTime().isAfter(LocalTime.of(12,0)))
+        if (sleepingSessionList.getFirst().getStartSleep().toLocalTime().isAfter(LocalTime.of(12, 0)))
             return Integer.toString(period.getDays() - (int) count);
-        else return Integer.toString(period.getDays() - 1   - (int) count);
+        else return Integer.toString(period.getDays() - 1 - (int) count);
     }
 
 }

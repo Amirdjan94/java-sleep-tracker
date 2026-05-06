@@ -11,7 +11,7 @@ public class AvgSleepSession implements SleepLogProcessor {
         return Integer.toString((sleepingSessionList.stream()
                 .map((element) -> Duration.between(element.getStartSleep(), element.getFinishSleep()))
                 .map(element -> (int) element.toMinutes())
-                .reduce((accumulator, element)->accumulator+element)
-                        ).get()/sleepingSessionList.size());
+                .reduce((accumulator, element) -> accumulator + element)
+        ).get() / sleepingSessionList.size());
     }
 }
