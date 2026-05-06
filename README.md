@@ -1,2 +1,2 @@
-# java-sleep-tracker
-Repository for homework project.
+# Техническое задание Sleep Tracker Analyzer. Спринт 8
+Приложение принимает лог файл с записями сна пользователя и анализиует их 
