@@ -1,5 +1,7 @@
 package ru.yandex.practicum.sleeptracker;
 
+import ru.yandex.practicum.sleeptracker.exceptions.IncorrectArgumentException;
+import ru.yandex.practicum.sleeptracker.exceptions.NoArgumentExcpetion;
 import ru.yandex.practicum.sleeptracker.model.SleepingSession;
 import ru.yandex.practicum.sleeptracker.services.*;
 
@@ -9,7 +11,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -20,17 +21,16 @@ public class SleepTrackerApp {
     private static SleepAnalysisResult sleepAnalysisResult = new SleepAnalysisResult();
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String path = getPath(scanner);
+        if (args.length == 0) {
+            throw new NoArgumentExcpetion("Отсуствует параметр для запуска системы. Укажите путь до лог файла");
+        } else if (args.length > 1) {
+            throw new IncorrectArgumentException("Не корректные входные данные: Укажите путь только для одного лог файла");
+        }
+        String path = args[0];
         SleepTrackerApp sleepTrackerApp = new SleepTrackerApp();
         sleepTrackerApp.readSleepLog(path); // Чтение лога из файла
         sleepTrackerApp.addProcessInAnalys(); // Инициализация функций
         sleepAnalysisResult.lineProcess(); // Запуск функций
-    }
-
-    private static String getPath(Scanner scanner) {
-        System.out.println("Введите путь к Лог-файлу");
-        return scanner.nextLine();
     }
 
     private void addProcessInAnalys() {
