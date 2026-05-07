@@ -13,6 +13,7 @@ public class UserTypeDefenition implements SleepLogProcessor {
 
         // Фильтруем ночные сессии сна и Сопоставляем каждую ночную сессию сна с типом пользователя
         List<UserType> userTypeList = sleepingSessionList.stream()
+                .filter(sleepingSession -> sleepingSession.getStartSleep() != null && sleepingSession.getFinishSleep() != null)
                 .filter((sleepingSession) ->
                         (sleepingSession.getStartSleep().getDayOfYear() == sleepingSession.getFinishSleep().getDayOfYear() - 1) ||
                                 (sleepingSession.getStartSleep().getHour() < 6)

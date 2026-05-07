@@ -10,6 +10,7 @@ public class SleeplessNightCount implements SleepLogProcessor {
     @Override
     public String doProcess(List<SleepingSession> sleepingSessionList) {
         long count = sleepingSessionList.stream()
+                .filter(sleepingSession -> sleepingSession.getStartSleep() != null && sleepingSession.getFinishSleep() != null)
                 .filter((sleepingSession) ->
                         (sleepingSession.getStartSleep().getDayOfYear() == sleepingSession.getFinishSleep().getDayOfYear() - 1) ||
                                 (sleepingSession.getStartSleep().getHour() < 6)

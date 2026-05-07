@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -19,11 +20,17 @@ public class SleepTrackerApp {
     private static SleepAnalysisResult sleepAnalysisResult = new SleepAnalysisResult();
 
     public static void main(String[] args) {
-        String path = "src/main/resources/sleep_log.txt";
+        Scanner scanner = new Scanner(System.in);
+        String path = getPath(scanner);
         SleepTrackerApp sleepTrackerApp = new SleepTrackerApp();
         sleepTrackerApp.readSleepLog(path); // Чтение лога из файла
         sleepTrackerApp.addProcessInAnalys(); // Инициализация функций
         sleepAnalysisResult.lineProcess(); // Запуск функций
+    }
+
+    private static String getPath(Scanner scanner) {
+        System.out.println("Введите путь к Лог-файлу");
+        return scanner.nextLine();
     }
 
     private void addProcessInAnalys() {

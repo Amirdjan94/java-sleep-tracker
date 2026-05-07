@@ -7,6 +7,8 @@ import java.util.List;
 public class CountSleepSession implements SleepLogProcessor {
     @Override
     public String doProcess(List<SleepingSession> sleepingSessionList) {
-        return Long.toString(sleepingSessionList.stream().count());
+        return Long.toString(sleepingSessionList.stream()
+                .filter(sleepingSession -> sleepingSession.getStartSleep() != null && sleepingSession.getFinishSleep() != null)
+                .count());
     }
 }

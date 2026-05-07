@@ -9,6 +9,7 @@ public class AvgSleepSession implements SleepLogProcessor {
     @Override
     public String doProcess(List<SleepingSession> sleepingSessionList) {
         return Integer.toString((sleepingSessionList.stream()
+                .filter(sleepingSession -> sleepingSession.getStartSleep() != null && sleepingSession.getFinishSleep() != null)
                 .map((element) -> Duration.between(element.getStartSleep(), element.getFinishSleep()))
                 .map(element -> (int) element.toMinutes())
                 .reduce((accumulator, element) -> accumulator + element)
